@@ -14,6 +14,17 @@ public class APIResponse {
     @SerializedName("Response")
     private String response;
 
+    @SerializedName("Error")
+    private String error;
+
+    public boolean getResponse(){
+        return response.equalsIgnoreCase("true");
+    }
+
+    public String getError() {
+        return error;
+    }
+
     public List<Movie> getMovies() {
         return Arrays.asList(movies);
     }
@@ -22,9 +33,6 @@ public class APIResponse {
         return totalResult;
     }
 
-    public String getResponse() {
-        return response;
-    }
 
     @Override
     public String toString() {

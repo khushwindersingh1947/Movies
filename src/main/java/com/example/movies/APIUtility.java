@@ -37,7 +37,7 @@ public class APIUtility {
 //        System.out.println(httpResponse.body());
 //    }
 
-    public static List<Movie> getMoviesFromOMDB(String searchTerm) throws IOException, InterruptedException {
+    public static APIResponse getMoviesFromOMDB(String searchTerm) throws IOException, InterruptedException {
 
         searchTerm = searchTerm.replaceAll(" ","%20");
         String uri = "http://www.omdbapi.com/?apikey=b225b7dd&s=" + searchTerm;
@@ -54,7 +54,7 @@ public class APIUtility {
         Gson gson = new Gson();
         APIResponse apiResponse = gson.fromJson(httpResponse.body(),APIResponse.class);
 
-        return apiResponse.getMovies();
+        return apiResponse;
     }
 
     /**

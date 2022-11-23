@@ -49,10 +49,19 @@ public class SearchViewController implements Initializable {
         //get search term from search Text Field
         String searchText = searchTextField.getText();
 
-        //populate the list
-        listView.getItems().addAll(APIUtility.getMoviesFromOMDB(searchText));
+        APIResponse apiResponse = APIUtility.getMoviesFromOMDB(searchText);
 
-        //make visible
-        resultsBox.setVisible(true);
+        //populate the list
+        if(apiResponse.getResponse()){
+            listView.getItems().addAll(apiResponse.getMovies());
+
+            //make visible
+            resultsBox.setVisible(true);
+            msgLabel.setVisible(false);
+        }
+        else{
+            msgLabel.setVisible(true);
+            msgLabel.setText(apiResponse.getError());
+        }
     }
 }
