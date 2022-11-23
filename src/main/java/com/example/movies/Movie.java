@@ -9,11 +9,12 @@ public class Movie {
     @SerializedName("Year")
     private String year;
 
-    private String imbdID;
+    private String imdbID;
 
     @SerializedName("Type")
     private String type;
 
+    @SerializedName("Poster")
     private String poster;
 
 
@@ -25,8 +26,8 @@ public class Movie {
         return year;
     }
 
-    public String getImbdID() {
-        return imbdID;
+    public String getImdbID() {
+        return imdbID;
     }
 
     public String getType() {

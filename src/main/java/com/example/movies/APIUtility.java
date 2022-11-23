@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 public class APIUtility {
 
     public static void getMoviesFromOMDB(String searchTerm) throws IOException, InterruptedException {
+
         searchTerm = searchTerm.replaceAll(" ","%20");
         String uri = "http://www.omdbapi.com/?apikey=b225b7dd&s=" + searchTerm;
 
@@ -24,8 +25,15 @@ public class APIUtility {
 
         //this saves whatever returned to a file
         HttpResponse<Path> response = client.send(httpRequest,HttpResponse
-                                            .BodyHandlers
-                                            .ofFile(Paths.get("movies.json")));
+                                                                .BodyHandlers
+                                                                .ofFile(Paths.get("movies.json")));
+
+        //we can also store the response to the body of httpResponse object as string
+        HttpResponse<String> httpResponse = client.send(httpRequest,HttpResponse
+                                                                    .BodyHandlers
+                                                                    .ofString());
+
+        System.out.println(httpResponse.body());
 
     }
 
