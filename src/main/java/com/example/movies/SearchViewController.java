@@ -46,6 +46,9 @@ public class SearchViewController implements Initializable {
     //display movie object in the listView
     @FXML
     void search(ActionEvent event) throws IOException, InterruptedException {
+        //clear the list
+        listView.getItems().clear();
+
         //get search term from search Text Field
         String searchText = searchTextField.getText();
 

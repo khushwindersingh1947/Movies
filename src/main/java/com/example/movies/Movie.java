@@ -37,4 +37,8 @@ public class Movie {
     public String getPoster() {
         return poster;
     }
+
+    public String toString(){
+        return getTitle() + "-" + getYear();
+    }
 }
