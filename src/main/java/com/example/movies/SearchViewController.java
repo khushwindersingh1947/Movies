@@ -76,7 +76,10 @@ public class SearchViewController implements Initializable {
         //populate the list
         if(apiResponse.getResponse()){
             listView.getItems().addAll(apiResponse.getMovies());
+
+            //sort list items
             Collections.sort(listView.getItems());
+
             //make visible
             resultsBox.setVisible(true);
             msgLabel.setVisible(false);
