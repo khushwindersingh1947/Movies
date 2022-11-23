@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class SearchViewController implements Initializable {
@@ -57,7 +58,7 @@ public class SearchViewController implements Initializable {
         //populate the list
         if(apiResponse.getResponse()){
             listView.getItems().addAll(apiResponse.getMovies());
-
+            Collections.sort(listView.getItems());
             //make visible
             resultsBox.setVisible(true);
             msgLabel.setVisible(false);
