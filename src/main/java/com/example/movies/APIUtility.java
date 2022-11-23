@@ -82,4 +82,29 @@ public class APIUtility {
 
         return apiResponse;
     }
+
+    /**
+     * This method will call OMDB api with IMBD ID and return the details of movie selected
+     * @param imdbID
+     * @return MovieDetail
+     * @throws IOException
+     * @throws InterruptedException
+     */
+
+    public static MovieDetail getMovieDetailFromOMDB(String imdbID) throws IOException, InterruptedException {
+
+        String uri = "http://www.omdbapi.com/?apikey=b225b7dd&s=" + imdbID;
+
+        //configure the environment to make a HTTP request
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(uri)).build();
+
+        //we can also store the response to the body of httpResponse object as string
+        HttpResponse<String> httpResponse = client.send(httpRequest,HttpResponse
+                .BodyHandlers
+                .ofString());
+
+        Gson gson = new Gson();
+        return gson.fromJson(httpResponse.body(),MovieDetail.class);
+    }
 }
