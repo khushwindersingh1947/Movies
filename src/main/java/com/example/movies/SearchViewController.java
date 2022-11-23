@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -40,6 +41,23 @@ public class SearchViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         resultsBox.setVisible(false);
         msgLabel.setVisible(false);
+
+        //configure a listener for listView to display art
+        listView.getSelectionModel().selectedItemProperty()
+                .addListener((obs,old,movieSelected)->{
+            if(movieSelected != null){
+                try{
+                    posterImageView.setImage(new Image(movieSelected.getPoster()));
+                }catch (IllegalArgumentException e){
+                    posterImageView.setImage(new Image(Main.class.getResourceAsStream("images/default_poster.png")));
+                }
+                posterImageView.setVisible(true);
+            }
+            else{
+                posterImageView.setVisible(false);
+            }
+        });
+
     }
 
     //read the search term from textField
@@ -67,5 +85,10 @@ public class SearchViewController implements Initializable {
             msgLabel.setVisible(true);
             msgLabel.setText(apiResponse.getError());
         }
+    }
+
+    @FXML
+    void getDetails(ActionEvent event) {
+
     }
 }

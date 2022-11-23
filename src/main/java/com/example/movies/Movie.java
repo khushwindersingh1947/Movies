@@ -47,6 +47,6 @@ public class Movie implements Comparable<Movie>{
         if(this.year.compareTo(otherMovie.getYear()) == 0){
             return this.title.compareTo(otherMovie.getTitle());
         }
-        return this.year.compareTo(otherMovie.getYear());
+        return -(this.year.compareTo(otherMovie.getYear()));
     }
 }
