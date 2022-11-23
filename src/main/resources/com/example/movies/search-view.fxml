@@ -17,7 +17,7 @@
                 <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                     <children>
                         <TextField fx:id="searchTextField" promptText="Enter Movie Title" />
-                        <Button mnemonicParsing="false" text="Search" />
+                        <Button mnemonicParsing="false" onAction="#search" text="Search" />
                     </children>
                     <padding>
                         <Insets top="150.0" />

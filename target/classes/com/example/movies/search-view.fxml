@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="1000.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movies.SearchViewController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movies.SearchViewController">
     <children>
         <VBox alignment="BOTTOM_CENTER" prefHeight="1000.0" prefWidth="735.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                     <children>
                         <TextField fx:id="searchTextField" promptText="Enter Movie Title" />
-                        <Button mnemonicParsing="false"  text="Search" />
+                        <Button mnemonicParsing="false" onAction="#search" text="Search" />
                     </children>
                     <padding>
                         <Insets top="150.0" />
@@ -32,7 +32,7 @@
                         <VBox fx:id="selectedVBox" alignment="CENTER">
                             <children>
                                 <ImageView fx:id="posterImageView" fitHeight="400.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-                                <Button mnemonicParsing="false"  text="Details &gt;&gt;" />
+                                <Button mnemonicParsing="false" text="Details &gt;&gt;" />
                             </children>
                         </VBox>
                     </children>

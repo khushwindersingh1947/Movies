@@ -11,10 +11,33 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 public class APIUtility {
 
-    public static void getMoviesFromOMDB(String searchTerm) throws IOException, InterruptedException {
+//    public static void getMoviesFromOMDB(String searchTerm) throws IOException, InterruptedException {
+//
+//        searchTerm = searchTerm.replaceAll(" ","%20");
+//        String uri = "http://www.omdbapi.com/?apikey=b225b7dd&s=" + searchTerm;
+//
+//        //configure the environment to make a HTTP request
+//        HttpClient client = HttpClient.newHttpClient();
+//        HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(uri)).build();
+//
+//        //this saves whatever returned to a file
+//        HttpResponse<Path> response = client.send(httpRequest,HttpResponse
+//                                                                .BodyHandlers
+//                                                                .ofFile(Paths.get("movies.json")));
+//
+//        //we can also store the response to the body of httpResponse object as string
+//        HttpResponse<String> httpResponse = client.send(httpRequest,HttpResponse
+//                                                                    .BodyHandlers
+//                                                                    .ofString());
+//
+//        System.out.println(httpResponse.body());
+//    }
+
+    public static List<Movie> getMoviesFromOMDB(String searchTerm) throws IOException, InterruptedException {
 
         searchTerm = searchTerm.replaceAll(" ","%20");
         String uri = "http://www.omdbapi.com/?apikey=b225b7dd&s=" + searchTerm;
@@ -23,18 +46,15 @@ public class APIUtility {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(uri)).build();
 
-        //this saves whatever returned to a file
-        HttpResponse<Path> response = client.send(httpRequest,HttpResponse
-                                                                .BodyHandlers
-                                                                .ofFile(Paths.get("movies.json")));
-
         //we can also store the response to the body of httpResponse object as string
         HttpResponse<String> httpResponse = client.send(httpRequest,HttpResponse
-                                                                    .BodyHandlers
-                                                                    .ofString());
+                .BodyHandlers
+                .ofString());
 
-        System.out.println(httpResponse.body());
+        Gson gson = new Gson();
+        APIResponse apiResponse = gson.fromJson(httpResponse.body(),APIResponse.class);
 
+        return apiResponse.getMovies();
     }
 
     /**
